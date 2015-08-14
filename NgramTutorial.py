@@ -13,8 +13,22 @@
 
 # In[1]:
 
-with open('pg1342.txt', 'r') as f:
-    txt = f.read()
+# Find the number links by looking on Project Gutenberg in the address bar for a book.
+books = {'Pride and Prejudice': '1342',
+         'Huckleberry Fin': '76',
+         'Sherlock Holmes': '1661'}
+
+book = books['Pride and Prejudice']
+
+# Load text from Project Gutenberg URL
+import urllib2
+url_template = 'https://www.gutenberg.org/cache/epub/%s/pg%s.txt'
+
+f = urllib2.urlopen(url_template % (book, book), 'r')
+txt = f.read()
+f.close()
+# with  as f:
+#     txt = f.read()
 
 # See the number of characters and the first 50 characters to confirm it is there    
 print len(txt), ',', txt[:50] , '...'
@@ -223,13 +237,13 @@ print "\""
 # ## Tri-grams and more
 # Okay, let's create a Ngram generator that can let us make ngrams of arbitrary sizes
 
-# In[14]:
+# In[ ]:
 
 def generateNgram(n=1):
     gram = dict()
     
     # Some helpers to keep us crashing the PC for now
-    assert n > 0 and n < 20
+    assert n > 0 and n < 100
     
     # Populate N-gram dictionary
     for i in xrange(len(words)-(n-1)):
@@ -250,7 +264,7 @@ print trigram[:20]
 
 # Cool! Okay, let's see a selection of sentences for N-grams with N = 2 to 10 and a few starting words!
 
-# In[15]:
+# In[ ]:
 
 def getNGramSentenceRandom(gram, word, n = 50):
     for i in xrange(n):
@@ -278,7 +292,7 @@ for n in xrange(2,10):
 
 # You can clearly see the sentences getting better and better with larger n-grams, this correlates to the ngram having more foresight into the sentence structure.
 
-# In[16]:
+# In[ ]:
 
 # Generate 10gram list
 print
@@ -289,7 +303,7 @@ print "Done"
 
 # Let's play with the 10gram and see what sort of sentence comes out.
 
-# In[17]:
+# In[ ]:
 
 # Try out a bunch of sentences
 for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
@@ -303,6 +317,25 @@ for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
 # Instead of just taking the next word every time, we could take the next k words etc.
 # 
 # To be continue...
+
+# In[ ]:
+
+# Generate 10gram list
+n = 50
+print
+print "Generating %d-gram list..." % n,
+gram30 = generateNgram(n)
+print "Done"
+
+
+# In[ ]:
+
+# Try out a bunch of sentences
+for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
+    print "  %d-gram: \"" % n,
+    getNGramSentenceRandom(ngram, word, 20)
+    print "\""
+
 
 # In[ ]:
 

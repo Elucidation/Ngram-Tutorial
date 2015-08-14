@@ -191,8 +191,22 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;pg1342.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># Find the number links by looking on Project Gutenberg in the address bar for a book.</span>
+<span class="n">books</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Pride and Prejudice&#39;</span><span class="p">:</span> <span class="s">&#39;1342&#39;</span><span class="p">,</span>
+         <span class="s">&#39;Huckleberry Fin&#39;</span><span class="p">:</span> <span class="s">&#39;76&#39;</span><span class="p">,</span>
+         <span class="s">&#39;Sherlock Holmes&#39;</span><span class="p">:</span> <span class="s">&#39;1661&#39;</span><span class="p">}</span>
+
+<span class="n">book</span> <span class="o">=</span> <span class="n">books</span><span class="p">[</span><span class="s">&#39;Pride and Prejudice&#39;</span><span class="p">]</span>
+
+<span class="c"># Load text from Project Gutenberg URL</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="n">url_template</span> <span class="o">=</span> <span class="s">&#39;https://www.gutenberg.org/cache/epub/</span><span class="si">%s</span><span class="s">/pg</span><span class="si">%s</span><span class="s">.txt&#39;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url_template</span> <span class="o">%</span> <span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">book</span><span class="p">),</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">txt</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c"># with  as f:</span>
+<span class="c">#     txt = f.read()</span>
 
 <span class="c"># See the number of characters and the first 50 characters to confirm it is there    </span>
 <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span> <span class="p">,</span> <span class="s">&#39;...&#39;</span>
@@ -208,7 +222,7 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>704149 , ﻿The Project Gutenberg EBook of Pride and Prejud ...
+<pre>717575 , ﻿The Project Gutenberg EBook of Pride and Prejud ...
 </pre>
 </div>
 </div>
@@ -720,21 +734,21 @@ Start word: how
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Start word: and
-2-gram sentence: &quot; and almost have allowed her model of her letter and goodness oh cried elizabeth this event of several years of &quot;
+2-gram sentence: &quot; and how he probably more easily believe me i never see how much as that he and pride and unshackled &quot;
 Start word: he
-2-gram sentence: &quot; he chiefly in oh lizzy continued i could he had been really amiable light as well and within her brother &quot;
+2-gram sentence: &quot; he proceeded to be impossible chapter more than to do anything elizabeth implacable resentment gave it really believe very rational &quot;
 Start word: she
-2-gram sentence: &quot; she is very gentleness as well as usual with this agreement shall never more have long and though it not &quot;
+2-gram sentence: &quot; she spoke of distinguished trait of him she regarded her earnestly entreated permission if she had given him in this &quot;
 Start word: when
-2-gram sentence: &quot; when he was not justify the world who are very kind from something was bestowed on looking up the loss &quot;
+2-gram sentence: &quot; when there subsisted between the possibility of everything was superseded by a great spirits are cried mr bingley looked and &quot;
 Start word: john
-2-gram sentence: &quot; john with cold was first stage of dignity with the letter was convinced from much in the ball at all &quot;
+2-gram sentence: &quot; john told what sort of her and any of companions that whenever they came to conciliate her agitation of wine &quot;
 Start word: never
-2-gram sentence: &quot; never let me jane to her going there but i do not to the most likely that whatever his reserve &quot;
+2-gram sentence: &quot; never knew that regardless of his character i think you think what had before jane the same intelligible gallantry and &quot;
 Start word: i
-2-gram sentence: &quot; i had one of self destined for you must feel the project gutenberg volunteers and of an unpleasant sort of &quot;
+2-gram sentence: &quot; i can have somebody who met and had not been doing very genteel agreeable but my dear said lately made &quot;
 Start word: how
-2-gram sentence: &quot; how many weeks and loving them though it is tolerably till the neighbourhood it to equal to elizabeth could not &quot;
+2-gram sentence: &quot; how her being coherent dearest sister to be happy for the mortification mr bennet that everyone connected with which could &quot;
 </pre>
 </div>
 </div>
@@ -781,7 +795,7 @@ Start word: how
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Start word: it
-2-gram sentence: &quot; it would be the netherfield for whatever might see mr and show off two years had at dinner was banished and by her inquiries about it was unluckily for my own fault with an unforgiving speech they proposed being married and address that mr denny himself on mr bennet s &quot;
+2-gram sentence: &quot; it will think anything more disturbed more continued my fair to rosings and her power to her sister was beneath him colonel fitzwilliam i may assure you must be informed by such that betrayed him with the room was too ill opinion constitute my niece s steward and hatfield but &quot;
 </pre>
 </div>
 </div>
@@ -803,14 +817,14 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">generateNgram</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">gram</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     
     <span class="c"># Some helpers to keep us crashing the PC for now</span>
-    <span class="k">assert</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">20</span>
+    <span class="k">assert</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">100</span>
     
     <span class="c"># Populate N-gram dictionary</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
@@ -860,7 +874,7 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">getNGramSentenceRandom</span><span class="p">(</span><span class="n">gram</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
@@ -899,85 +913,21 @@ Start word: how
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Generating 2-gram list... Done
-  2-gram: &quot; and opening in such an occasion of a woman must be mr darcy by a &quot;
-  2-gram: &quot; he was commissioning her exuberant spirits or next week she feels bingley was persuaded yourself &quot;
-  2-gram: &quot; she were over the river in acceding to be obliged to the room no stay &quot;
-  2-gram: &quot; when they had a table with louisa i was very confined for supposing his house &quot;
-  2-gram: &quot; john with other causes must be secure let me he i am determined if i &quot;
-  2-gram: &quot; never without anger could come mr darcy much satisfaction in the intelligence his inquiries after &quot;
-  2-gram: &quot; i do me you believe him and though the evening brought a disadvantage in his &quot;
-  2-gram: &quot; how many others then returned to know and bent on the address that you what &quot;
+  2-gram: &quot; and i am poor eliza bennet to herself and twenty such a second song said &quot;
+  2-gram: &quot; he as handsome as soon marry for us hear of it the confinement of his &quot;
+  2-gram: &quot; she comes my object has received at them might be quick parts of writing to &quot;
+  2-gram: &quot; when elizabeth that pure and with propriety not help seeing that he but it grew &quot;
+  2-gram: &quot; john told that must leave than by a solicitude on jane as to dispose of &quot;
+  2-gram: &quot; never saw him to the case you would tell my consent to conceal it had &quot;
+  2-gram: &quot; i found that when your manners now and she endeavoured in whose northern tour of &quot;
+  2-gram: &quot; how heartily did at last finish his family they could not give greater beauty i &quot;
 
 Generating 3-gram list... Done
-  3-gram: &quot; and indeed but i have mortified mine believe him to see jane what is strong &quot;
-  3-gram: &quot; he chose to bear these two eldest daughter she could contain herself which his daughters &quot;
-  3-gram: &quot; she said he had often that they who had hoped it may arise chiefly for &quot;
-  3-gram: &quot; when you think she might be to welcome to be where where else elizabeth s &quot;
-  3-gram: &quot; john told me in a man chapter elizabeth suspected enough for i wonder said she &quot;
-  3-gram: &quot; never had been strange yes sir has been valued that he believed to step was &quot;
-  3-gram: &quot; i feel how to pratt for preparing to read the praise is a sort of &quot;
-  3-gram: &quot; how pleased to us i went on the table while these tastes had been able &quot;
-
-Generating 4-gram list... Done
-  4-gram: &quot; and generous good enough to see the carriage was most creditable gentlemanlike man you give &quot;
-  4-gram: &quot; he detained in he will believe not have been listened in your hearing this event &quot;
-  4-gram: &quot; she told me for continuing their pleasantest preservative she finds miss bennet will make his &quot;
-  4-gram: &quot; when mrs forster said miss bingley her affection sometimes one looked the morning mr wickham &quot;
-  4-gram: &quot; john told he could think she really too much for it on he wishes and &quot;
-  4-gram: &quot; never reach when persons whose mind and so steady candour is my daughters uncommonly fast &quot;
-  4-gram: &quot; i shall try to be finer success he has very little delicate a beautiful creature &quot;
-  4-gram: &quot; how mr bennet had been too full of his sisters may be urged the happy &quot;
-
-Generating 5-gram list... Done
-  5-gram: &quot; and of her a few weeks with the son unless you have nothing but however &quot;
-  5-gram: &quot; he now and herself said you never thought of associating with scarlet coat and trust &quot;
-  5-gram: &quot; she said lately learned some who is so much as this room she soon forgotten &quot;
-  5-gram: &quot; when you would have to their journey from the second time of all that she &quot;
-  5-gram: &quot; john told her for my life could be hurt if you must not sixpence of &quot;
-  5-gram: &quot; never see as to scotland but of my power and give you must have known &quot;
-  5-gram: &quot; i do it is over he was all walking if my mother followed he means &quot;
-  5-gram: &quot; how pleasant man quite comfortable on my youngest girl and are not till roused to &quot;
-
-Generating 6-gram list... Done
-  6-gram: &quot; and anxiety she stared many pleasant nature shall not thank me less agreeable his coming &quot;
-  6-gram: &quot; he offered to whom you will thank god s manners and to everybody was as &quot;
-  6-gram: &quot; she would be secure and kitty fretfully when that is all the project gutenberg tm &quot;
-  6-gram: &quot; when opposed their relationship to justify it is impossible not hear any rate there is &quot;
-  6-gram: &quot; john with an hour s going that scenes but then owned that she spoke and &quot;
-  6-gram: &quot; never been made himself in cried elizabeth was then shut the acutest kind as you &quot;
-  6-gram: &quot; i am sure said elizabeth was sure they are not and charitable donations in love &quot;
-  6-gram: &quot; how could not many circumstances of which nature had been at this desirable for you &quot;
-
-Generating 7-gram list... Done
-  7-gram: &quot; and the offer of advantage spent by his having promised to anybody s home and &quot;
-  7-gram: &quot; he had no answer and that all the end and where can know more cheerfully &quot;
-  7-gram: &quot; she sent them there was uppermost in that horrid man on either but to make &quot;
-  7-gram: &quot; when the best but though my aunt leaving wickham would have often disdained the sense &quot;
-  7-gram: &quot; john told him in mirth for additional cost and i speak with her daughters i &quot;
-  7-gram: &quot; never spoke to appear to give her turn her note aloud and such a period &quot;
-  7-gram: &quot; i must abominate writing because you have both must go on this subject of it &quot;
-  7-gram: &quot; how she will probably strike into her and was deserved but slightly surveying it is &quot;
-
-Generating 8-gram list... Done
-  8-gram: &quot; and though she was instantly on her surprise of the idea of peculiar vexation she &quot;
-  8-gram: &quot; he is that consoled her feel it taken leave to the advantage the survivor this &quot;
-  8-gram: &quot; she came from the effect on the case the table in town myself but as &quot;
-  8-gram: &quot; when sanctioned mr bingley and vexation to mrs bennet accepted but she had the gouldings &quot;
-  8-gram: &quot; john told his ankle in the kindness madam he would not affect concern which he &quot;
-  8-gram: &quot; never had mentioned earlier that if he had set forth into the mince pies for &quot;
-  8-gram: &quot; i could marry without forming any stay at his mind every glance at all the &quot;
-  8-gram: &quot; how very much of what to bring them and application was before they should be &quot;
-
-Generating 9-gram list... Done
-  9-gram: &quot; and help feeling towards the village when they had not but to me mr bennet &quot;
-  9-gram: &quot; he was the gentleman looking for i am sure she left the door jane in &quot;
-  9-gram: &quot; she had better for the circumstances to my dear replied jane was scarcely an expostulation &quot;
-  9-gram: &quot; when i must be long as marked her to eight o clock and from meryton &quot;
-  9-gram: &quot; john with a proper place which we may depend on every wish of thought it &quot;
-  9-gram: &quot; never heard mr darcy if you have actually persists in the course of fatigue and &quot;
-  9-gram: &quot; i ever induce me so indulgent as the whole of happiness in her progress was &quot;
-  9-gram: &quot; how very agreeable woman may elect to hear a relation lady catherine she ever since &quot;
-</pre>
+  3-gram: &quot; and with money what i was now i was finally settled family knew that resignation &quot;
+  3-gram: &quot; he began an air which mrs hurst and precipitate closure with her with all that &quot;
+  3-gram: &quot; she is the works if i should not the greatest part of her more than &quot;
+  3-gram: &quot; when in leaving her ladyship last week at your kindness to wish i certainly to &quot;
+  3-gram: &quot; john with us on her absence may spend the few minutes in </pre>
 </div>
 </div>
 
@@ -997,7 +947,7 @@ Generating 9-gram list... Done
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Generate 10gram list</span>
@@ -1008,21 +958,6 @@ Generating 9-gram list... Done
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-Generating 9-gram list... Done
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1039,7 +974,7 @@ Generating 9-gram list... Done
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Try out a bunch of sentences</span>
@@ -1050,27 +985,6 @@ Generating 9-gram list... Done
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>  9-gram: &quot; and she said her manner of whose return and i am married before what we may take his wife conducted yourselves so well as much when i entered the same and making her mother as for being hereafter her repeatedly to mrs bennet one of enjoying herself since we know it they are not be killed and once gone jane nor faulty degree of gratitude by letting her heart you so dull as follows having passed she asked her plan could not lady lucas whom nobody in our friend denny denied knowing forgive me against herself she will die of &quot;
-  9-gram: &quot; he supposed that colonel fitzwilliam s good brother is not be private care to ask when the morning within ten minutes before they knew myself sincerely i cannot always kept up any of her dear i dare say would not but could not till the matter cried when the country he had any such a family they had many pauses must have him before was meeting her daughters were directed her for he appeared again she could not plain chapter a intercourse a christian but haughty it when persons who does not have long he set amazed at table where &quot;
-  9-gram: &quot; she grew on miss bennet accepted a girl it gratified by your porridge and entreating her to return the means unprotected or obtain a capital added what i am not suit as quietly answered in rejecting him with him and the hand with you could not imagine it became perfect composure when mrs bennet looking farther northwards than either or having received soon but i have got up everything right to be by a very sorry however mrs phillips first points she hardly hold her letters you will influence a letter and though in hunsford every moment upon me to &quot;
-  9-gram: &quot; when she saw the lady was a project gutenberg tm trademark as good as may we had called economy was able to advantage of it is probably superior to me when the persuasion you are gratefully accepted the danger of a proper civilities bingley were standing and beg leave his kindness mr darcy thought only a very proud but this work of a letter was a little of his return mr darcy who seems he was on the hermitage elizabeth entered the regulars and his sisters to consider poetry as any place that my dressing gown before and miss bingley &quot;
-  9-gram: &quot; john with some prettier girls walked about it was distressed but at all that bingley with lizzy said they never yet for a little compassion to prove had ever the more contracted into the bride as they had most improbable event of the greatest satisfaction of all but without ceremony was rather a lively tone which she might expect such confusion said fitzwilliam without knowing that it may lead me to elizabeth when in company for i never to all others were going to make the honour of that he was not altered what is improved and mrs bennet scarcely &quot;
-  9-gram: &quot; never seen miss bingley standing on her situation remained therefore soon as before she affectionately taking you again the other warranties of not expect jane constantly so i am not help giving her ease with mutual desire of i had been was alone after an earnest i cannot fix on the point out as much grown girl but as soon satisfied and praise on meeting both sat with whom he i speak with no such behaviour equally ill opinion in elizabeth was forced to stay at rosings in without seeming really believe a companion added she began scolding her through &quot;
-  9-gram: &quot; i had such a wish to visit them with him accidentally in which shortly have been considered it is desired effect of their acquaintance still increasing and conciliatory manners and i know not afraid her heart you mean as to the motion of lydia what i must feel something of superior execution he was as well as he should stand by undervaluing their favourable than hurrying instantly understood that led by his dependence when they were to whom he dines here this for incivility though it will be as the united to write very respectable pleasures and elizabeth could call &quot;
-  9-gram: &quot; how shall be so soon as warmly but no connections their share of general habits that his gig and when their former my affection to eight o clock in which brought only to set off and pride he had resolved to attribute to be aware that i shall though she did mr bennet have a part i cannot last how sincerely i must require and was attentive to do not her anxious circumspection of her how could have been designed for him my aunt promised letter i believe me so imprudence forgotten there are not receiving so mildly to have &quot;
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1086,6 +1000,41 @@ Generating 9-gram list... Done
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Generate 10gram list</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="k">print</span>
+<span class="k">print</span> <span class="s">&quot;Generating </span><span class="si">%d</span><span class="s">-gram list...&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span>
+<span class="n">gram30</span> <span class="o">=</span> <span class="n">generateNgram</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Done&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Try out a bunch of sentences</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
+    <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%d</span><span class="s">-gram: </span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span>
+    <span class="n">getNGramSentenceRandom</span><span class="p">(</span><span class="n">ngram</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
