@@ -2,7 +2,9 @@
 Building a basic N-gram generator and predictive sentence generator from scratch using IPython Notebook.
 
 # Viewing
-Click on `NgramTutorial.ipynb` to see the most recent static results generated .
+See a static copy of the notebook at [`NgramTutorial.ipynb`](https://github.com/Elucidation/Ngram-Tutorial/blob/master/NgramTutorial.ipynb).
+
+Alternatively, see the github page at [elucidation.github.io/Ngram-Tutorial/](http://elucidation.github.io/Ngram-Tutorial/) with a more basic layout.
 
 # Running live
 Install [IPython Notebook](https://ipython.org/ipython-doc/3/notebook/index.html). It may be as simple as `pip install "ipython[notebook]"`
