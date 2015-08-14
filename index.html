@@ -20,175 +20,69 @@
 
     <section class="main-content">
       <h1>
-<!-- START -->
+<a id="ipython-notebook---n-gram-tutorial" class="anchor" href="#ipython-notebook---n-gram-tutorial" aria-hidden="true"><span class="octicon octicon-link"></span></a>IPython Notebook - N-gram Tutorial</h1>
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="IPython-Notebook---N-gram-Tutorial">IPython Notebook - N-gram Tutorial<a class="anchor-link" href="#IPython-Notebook---N-gram-Tutorial">&#182;</a></h1><p><em>By Sam Ansari - Aug 13, 2015</em></p>
+<p><em>By Sam Ansari - Aug 13, 2015</em></p>
+
 <p>First I'll see how far I can get with N-grams without outside resources</p>
-<p>We have a text file for <a href="https://www.gutenberg.org/ebooks/1342">Pride and Prejudice from Project Gutenberg</a> stored as <code>pg1342.txt</code> in the same folder as our notebook. Let's load the text to a string since it's only 701KB, which will fit in memory nowadays.</p>
 
-<pre><code>*Note* : If we wanted to be more memory efficient we should parse the text file and store per word, etc.</code></pre>
+<p>We have a text file for <a href="https://www.gutenberg.org/ebooks/1342">Pride and Prejudice from Project Gutenberg</a> stored as <code>pg1342.txt</code> in the same folder as our notebook. Let's load the text to a string since it's only 701KB, which will fit in memory nowadays. </p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;pg1342.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-<span class="c"># See the number of characters and the first 50 characters to confirm it is there    </span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span> <span class="p">,</span> <span class="s">&#39;...&#39;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+<pre><code>*Note* : If we wanted to be more memory efficient we should parse the text file and store per word, etc.
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>704149 , ﻿The Project Gutenberg EBook of Pride and Prejud ...
-</pre>
-</div>
-</div>
+with open('pg1342.txt', 'r') as f:
+    txt = f.read()
 
-</div>
-</div>
+# See the number of characters and the first 50 characters to confirm it is there    
+print len(txt), ',', txt[:50] , '...'
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Great, now lets split into words into a big list, splitting on anything non-alphanumeric [A-Za-z0-9] (as well as punctuation) and forcing everything lowercase</p>
+704149 , ﻿The Project Gutenberg EBook of Pride and Prejud ...
+</code></pre>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;[^A-Za-z]+&#39;</span><span class="p">,</span> <span class="n">txt</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="n">words</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span> <span class="c"># Remove empty strings</span>
+<p>Great, now lets split into words into a big list, splitting on anything non-alphanumeric <a href="as%20well%20as%20punctuation">A-Za-z0-9</a> and forcing everything lowercase</p>
 
-<span class="c"># Print length of list</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
-</pre></div>
+<pre><code>words = re.split('[^A-Za-z]+', txt.lower())
+words = filter(None, words) # Remove empty strings
 
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+# Print length of list
+print len(words)
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>125897
-</pre>
-</div>
-</div>
 
-</div>
-</div>
+125897
+</code></pre>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Sets">Sets<a class="anchor-link" href="#Sets">&#182;</a></h2><p>From this we can now generate N-grams, lets start with a 1-gram, basically the set of all the words</p>
+<h2>
+<a id="sets" class="anchor" href="#sets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sets</h2>
 
-<pre><code>*Note* : One could use a dictionary instead of a set and keeping count of the occurances gives word frequency</code></pre>
+<p>From this we can now generate N-grams, lets start with a 1-gram, basically the set of all the words</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">sets</span>
-
-<span class="c"># Create set of all unique words, this throws away any information about frequency however</span>
-<span class="n">gram1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">gram1</span><span class="p">)</span>
-
-<span class="c"># Instead of printing all the elements in the set, create an iterator and print 20 elements only</span>
-<span class="n">gram1_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">gram1</span><span class="p">)</span>
-<span class="k">print</span> <span class="p">[</span><span class="n">gram1_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+<pre><code>*Note* : One could use a dictionary instead of a set and keeping count of the occurances gives word frequency
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>6528
-[&apos;foul&apos;, &apos;four&apos;, &apos;woods&apos;, &apos;hanging&apos;, &apos;woody&apos;, &apos;looking&apos;, &apos;eligible&apos;, &apos;scold&apos;, &apos;lord&apos;, &apos;meadows&apos;, &apos;sinking&apos;, &apos;leisurely&apos;, &apos;bringing&apos;, &apos;disturb&apos;, &apos;recollections&apos;, &apos;wednesday&apos;, &apos;piling&apos;, &apos;persisted&apos;, &apos;succession&apos;, &apos;tired&apos;]
-</pre>
-</div>
-</div>
+import sets
 
-</div>
-</div>
+# Create set of all unique words, this throws away any information about frequency however
+gram1 = set(words)
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+print len(gram1)
+
+# Instead of printing all the elements in the set, create an iterator and print 20 elements only
+gram1_iter = iter(gram1)
+print [gram1_iter.next() for i in xrange(20)]
+
+6528
+['foul', 'four', 'woods', 'hanging', 'woody', 'looking', 'eligible', 'scold', 'lord', 'meadows', 'sinking', 'leisurely', 'bringing', 'disturb', 'recollections', 'wednesday', 'piling', 'persisted', 'succession', 'tired']
+</code></pre>
+
 <p>Lets try and get the 2-gram now, which is pairs of words. Let's have a quick look to see the last 10 and how they look.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># See the last 10 pairs</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
+<pre><code># See the last 10 pairs
+for i in xrange(len(words)-10, len(words)-1):
+    print words[i], words[i+1]
 
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>subscribe to
+subscribe to
 to our
 our email
 email newsletter
@@ -197,759 +91,388 @@ to hear
 hear about
 about new
 new ebooks
-</pre>
-</div>
-</div>
+</code></pre>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Okay, seems good, lets get all word pairs, and then generate a set of unique pairs from it</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">word_pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">word_pairs</span><span class="p">)</span>
+<pre><code>word_pairs = [(words[i], words[i+1]) for i in xrange(len(words)-1)]
+print len(word_pairs)
 
-<span class="n">gram2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">word_pairs</span><span class="p">)</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">gram2</span><span class="p">)</span>
+gram2 = set(word_pairs)
+print len(gram2)
 
-<span class="c"># Print 20 elements from gram2</span>
-<span class="n">gram2_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">gram2</span><span class="p">)</span>
-<span class="k">print</span> <span class="p">[</span><span class="n">gram2_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
-</pre></div>
+# Print 20 elements from gram2
+gram2_iter = iter(gram2)
+print [gram2_iter.next() for i in xrange(20)]
 
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>125896
+125896
 55636
-[(&apos;her&apos;, &apos;taste&apos;), (&apos;every&apos;, &apos;kind&apos;), (&apos;five&apos;, &apos;shillings&apos;), (&apos;soothed&apos;, &apos;but&apos;), (&apos;seemed&apos;, &apos;most&apos;), (&apos;fortune&apos;, &apos;it&apos;), (&apos;of&apos;, &apos;thanking&apos;), (&apos;near&apos;, &apos;she&apos;), (&apos;understand&apos;, &apos;from&apos;), (&apos;it&apos;, &apos;looks&apos;), (&apos;have&apos;, &apos;made&apos;), (&apos;lucas&apos;, &apos;he&apos;), (&apos;fail&apos;, &apos;him&apos;), (&apos;new&apos;, &apos;to&apos;), (&apos;nothing&apos;, &apos;but&apos;), (&apos;fearful&apos;, &apos;on&apos;), (&apos;to&apos;, &apos;wander&apos;), (&apos;write&apos;, &apos;rather&apos;), (&apos;of&apos;, &apos;studying&apos;), (&apos;interruption&apos;, &apos;from&apos;)]
-</pre>
-</div>
-</div>
+[('her', 'taste'), ('every', 'kind'), ('five', 'shillings'), ('soothed', 'but'), ('seemed', 'most'), ('fortune', 'it'), ('of', 'thanking'), ('near', 'she'), ('understand', 'from'), ('it', 'looks'), ('have', 'made'), ('lucas', 'he'), ('fail', 'him'), ('new', 'to'), ('nothing', 'but'), ('fearful', 'on'), ('to', 'wander'), ('write', 'rather'), ('of', 'studying'), ('interruption', 'from')]
+</code></pre>
 
-</div>
-</div>
+<h2>
+<a id="frequency" class="anchor" href="#frequency" aria-hidden="true"><span class="octicon octicon-link"></span></a>Frequency</h2>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Frequency">Frequency<a class="anchor-link" href="#Frequency">&#182;</a></h2><p>Okay, that was fun, but this isn't enough, we need frequency if we want to have any sense of probabilities, which is what N-grams are about. Instead of using sets, lets create a dictionary with counts</p>
+<p>Okay, that was fun, but this isn't enough, we need frequency if we want to have any sense of probabilities, which is what N-grams are about. Instead of using sets, lets create a dictionary with counts</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">gram1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<pre><code>gram1 = dict()
 
-<span class="c"># Populate 1-gram dictionary</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">gram1</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-        <span class="n">gram1</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">gram1</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c"># Start a new entry with 1 count since saw it for the first time.</span>
+# Populate 1-gram dictionary
+for word in words:
+    if gram1.has_key(word):
+        gram1[word] += 1
+    else:
+        gram1[word] = 1 # Start a new entry with 1 count since saw it for the first time.
 
-<span class="c"># Turn into a list of (word, count) sorted by count from most to least</span>
-<span class="n">gram1</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">gram1</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span> <span class="o">-</span><span class="n">count</span><span class="p">)</span>
+# Turn into a list of (word, count) sorted by count from most to least
+gram1 = sorted(gram1.items(), key=lambda (word, count): -count)
 
-<span class="c"># Print top 20 most frequent words</span>
-<span class="k">print</span> <span class="n">gram1</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
-</pre></div>
+# Print top 20 most frequent words
+print gram1[:20]
 
-</div>
-</div>
-</div>
+[('the', 4507), ('to', 4243), ('of', 3730), ('and', 3658), ('her', 2225), ('i', 2070), ('a', 2012), ('in', 1937), ('was', 1847), ('she', 1710), ('that', 1594), ('it', 1550), ('not', 1450), ('you', 1428), ('he', 1339), ('his', 1271), ('be', 1260), ('as', 1192), ('had', 1177), ('with', 1100)]
+</code></pre>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[(&apos;the&apos;, 4507), (&apos;to&apos;, 4243), (&apos;of&apos;, 3730), (&apos;and&apos;, 3658), (&apos;her&apos;, 2225), (&apos;i&apos;, 2070), (&apos;a&apos;, 2012), (&apos;in&apos;, 1937), (&apos;was&apos;, 1847), (&apos;she&apos;, 1710), (&apos;that&apos;, 1594), (&apos;it&apos;, 1550), (&apos;not&apos;, 1450), (&apos;you&apos;, 1428), (&apos;he&apos;, 1339), (&apos;his&apos;, 1271), (&apos;be&apos;, 1260), (&apos;as&apos;, 1192), (&apos;had&apos;, 1177), (&apos;with&apos;, 1100)]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>For Pride and Prejudice, the words 'the', 'to', 'of', and 'and' were the top four most common words. Sounds about right, not too interesting yet, lets see what happens with 2-grams.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">gram2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<pre><code>gram2 = dict()
 
-<span class="c"># Populate 2-gram dictionary</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">gram2</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-        <span class="n">gram2</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">gram2</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+# Populate 2-gram dictionary
+for i in xrange(len(words)-1):
+    key = (words[i], words[i+1])
+    if gram2.has_key(key):
+        gram2[key] += 1
+    else:
+        gram2[key] = 1
 
-<span class="c"># Turn into a list of (word, count) sorted by count from most to least</span>
-<span class="n">gram2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">gram2</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span> <span class="o">-</span><span class="n">count</span><span class="p">)</span>
+# Turn into a list of (word, count) sorted by count from most to least
+gram2 = sorted(gram2.items(), key=lambda (_, count): -count)
 
-<span class="c"># Print top 20 most frequent words</span>
-<span class="k">print</span> <span class="n">gram2</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
-</pre></div>
+# Print top 20 most frequent words
+print gram2[:20]
 
-</div>
-</div>
-</div>
+[(('of', 'the'), 491), (('to', 'be'), 445), (('in', 'the'), 397), (('i', 'am'), 303), (('mr', 'darcy'), 273), (('to', 'the'), 268), (('of', 'her'), 261), (('it', 'was'), 251), (('of', 'his'), 235), (('she', 'was'), 212), (('she', 'had'), 205), (('had', 'been'), 200), (('it', 'is'), 194), (('i', 'have'), 188), (('to', 'her'), 179), (('that', 'he'), 177), (('could', 'not'), 167), (('he', 'had'), 166), (('and', 'the'), 165), (('for', 'the'), 163)]
+</code></pre>
 
-<div class="output_wrapper">
-<div class="output">
+<p>It looks like <code>"of the"</code> and <code>"to be"</code> are the top two most common 2-grams, sounds good. </p>
 
+<h2>
+<a id="next-word-prediction" class="anchor" href="#next-word-prediction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Next word prediction</h2>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[((&apos;of&apos;, &apos;the&apos;), 491), ((&apos;to&apos;, &apos;be&apos;), 445), ((&apos;in&apos;, &apos;the&apos;), 397), ((&apos;i&apos;, &apos;am&apos;), 303), ((&apos;mr&apos;, &apos;darcy&apos;), 273), ((&apos;to&apos;, &apos;the&apos;), 268), ((&apos;of&apos;, &apos;her&apos;), 261), ((&apos;it&apos;, &apos;was&apos;), 251), ((&apos;of&apos;, &apos;his&apos;), 235), ((&apos;she&apos;, &apos;was&apos;), 212), ((&apos;she&apos;, &apos;had&apos;), 205), ((&apos;had&apos;, &apos;been&apos;), 200), ((&apos;it&apos;, &apos;is&apos;), 194), ((&apos;i&apos;, &apos;have&apos;), 188), ((&apos;to&apos;, &apos;her&apos;), 179), ((&apos;that&apos;, &apos;he&apos;), 177), ((&apos;could&apos;, &apos;not&apos;), 167), ((&apos;he&apos;, &apos;had&apos;), 166), ((&apos;and&apos;, &apos;the&apos;), 165), ((&apos;for&apos;, &apos;the&apos;), 163)]
-</pre>
-</div>
-</div>
+<p>What can we do with this? Well lets see what happens if we take a random word from all the words, and build a sentence by just choosing the most common pair that has that word as it's start.</p>
 
-</div>
-</div>
+<pre><code>start_word = words[len(words)/4]
+print start_word
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It looks like <code>"of the"</code> and <code>"to be"</code> are the top two most common 2-grams, sounds good.</p>
-<h2 id="Next-word-prediction">Next word prediction<a class="anchor-link" href="#Next-word-prediction">&#182;</a></h2><p>What can we do with this? Well lets see what happens if we take a random word from all the words, and build a sentence by just choosing the most common pair that has that word as it's start.</p>
+enough
+</code></pre>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">start_word</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">start_word</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>enough
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>I just went ahead and chose the word that appears $1/4$ of the way into words, random enough.</p>
+
 <p>Now in a loop, iterate through the frequency list (most frequent first) and see if it matches the first word in a pair, if so, the next word is the second element in the word pair, and continue with that word. Stop after N words or the list does not contain that word.</p>
 
 <pre><code>*Note* : gram2 is a list that contains (key,value) where key is a word pair (first, second),
-         so you need element[0][0] for first word and element [0][1] for second word</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">get2GramSentence</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">print</span> <span class="n">word</span><span class="p">,</span>
-        <span class="c"># Find Next word</span>
-        <span class="n">word</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">gram2</span> <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">word</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span><span class="p">:</span>
-            <span class="k">break</span>
-
-<span class="n">word</span> <span class="o">=</span> <span class="n">start_word</span>
-<span class="k">print</span> <span class="s">&quot;Start word: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">word</span>
-
-<span class="k">print</span> <span class="s">&quot;2-gram sentence: </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-<span class="n">get2GramSentence</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+         so you need element[0][0] for first word and element [0][1] for second word
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Start word: enough
-2-gram sentence: &quot; enough to be so much as to be so much as to be so much as to be so much &quot;
-</pre>
-</div>
-</div>
+def get2GramSentence(word, n = 50):
+    for i in xrange(n):
+        print word,
+        # Find Next word
+        word = next((element[0][1] for element in gram2 if element[0][0] == word), None)
+        if not word:
+            break
 
-</div>
-</div>
+word = start_word
+print "Start word: %s" % word
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+print "2-gram sentence: \"",
+get2GramSentence(word, 20)
+print "\""
+
+Start word: enough
+2-gram sentence: " enough to be so much as to be so much as to be so much as to be so much "
+</code></pre>
+
 <p>It gets stuck in a loop pretty much straight away. Not very interesting, try out other words and see what happens.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
-    <span class="k">print</span> <span class="s">&quot;Start word: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">word</span>
+<pre><code>for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
+    print "Start word: %s" % word
 
-    <span class="k">print</span> <span class="s">&quot;2-gram sentence: </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-    <span class="n">get2GramSentence</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
-</pre></div>
+    print "2-gram sentence: \"",
+    get2GramSentence(word, 20)
+    print "\""
 
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Start word: and
-2-gram sentence: &quot; and the whole of the whole of the whole of the whole of the whole of the whole of the &quot;
+Start word: and
+2-gram sentence: " and the whole of the whole of the whole of the whole of the whole of the whole of the "
 Start word: he
-2-gram sentence: &quot; he had been so much as to be so much as to be so much as to be so much &quot;
+2-gram sentence: " he had been so much as to be so much as to be so much as to be so much "
 Start word: she
-2-gram sentence: &quot; she was not be so much as to be so much as to be so much as to be so &quot;
+2-gram sentence: " she was not be so much as to be so much as to be so much as to be so "
 Start word: when
-2-gram sentence: &quot; when she was not be so much as to be so much as to be so much as to be &quot;
+2-gram sentence: " when she was not be so much as to be so much as to be so much as to be "
 Start word: john
-2-gram sentence: &quot; john with the whole of the whole of the whole of the whole of the whole of the whole of &quot;
+2-gram sentence: " john with the whole of the whole of the whole of the whole of the whole of the whole of "
 Start word: never
-2-gram sentence: &quot; never be so much as to be so much as to be so much as to be so much as &quot;
+2-gram sentence: " never be so much as to be so much as to be so much as to be so much as "
 Start word: i
-2-gram sentence: &quot; i am sure i am sure i am sure i am sure i am sure i am sure i am &quot;
+2-gram sentence: " i am sure i am sure i am sure i am sure i am sure i am sure i am "
 Start word: how
-2-gram sentence: &quot; how much as to be so much as to be so much as to be so much as to be &quot;
-</pre>
-</div>
-</div>
+2-gram sentence: " how much as to be so much as to be so much as to be so much as to be "
+</code></pre>
 
-</div>
-</div>
+<h2>
+<a id="weighted-random-choice-based-on-frequency" class="anchor" href="#weighted-random-choice-based-on-frequency" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weighted random choice based on frequency</h2>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Weighted-random-choice-based-on-frequency">Weighted random choice based on frequency<a class="anchor-link" href="#Weighted-random-choice-based-on-frequency">&#182;</a></h2><p>Same thing. Okay, lets randomly choose from the subset of all 2grams that matches the first word, using a weighted-probability based on counts.</p>
+<p>Same thing. Okay, lets randomly choose from the subset of all 2grams that matches the first word, using a weighted-probability based on counts.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">random</span>
-<span class="k">def</span> <span class="nf">weighted_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">):</span>
-   <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">w</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">)</span>
-   <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
-   <span class="n">upto</span> <span class="o">=</span> <span class="mi">0</span>
-   <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">choices</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">upto</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">:</span>
-         <span class="k">return</span> <span class="n">c</span>
-      <span class="n">upto</span> <span class="o">+=</span> <span class="n">w</span>
-    
-<span class="k">def</span> <span class="nf">get2GramSentenceRandom</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">print</span> <span class="n">word</span><span class="p">,</span>
-        <span class="c"># Get all possible elements ((first word, second word), frequency)</span>
-        <span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">gram2</span> <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">word</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">choices</span><span class="p">:</span>
-            <span class="k">break</span>
-        
-        <span class="c"># Choose a pair with weighted probability from the choice list</span>
-        <span class="n">word</span> <span class="o">=</span> <span class="n">weighted_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
+<pre><code>import random
+def weighted_choice(choices):
+   total = sum(w for c, w in choices)
+   r = random.uniform(0, total)
+   upto = 0
+   for c, w in choices:
+      if upto + w &gt; r:
+         return c
+      upto += w
 
-</div>
-</div>
-</div>
+def get2GramSentenceRandom(word, n = 50):
+    for i in xrange(n):
+        print word,
+        # Get all possible elements ((first word, second word), frequency)
+        choices = [element for element in gram2 if element[0][0] == word]
+        if not choices:
+            break
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
-    <span class="k">print</span> <span class="s">&quot;Start word: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">word</span>
-
-    <span class="k">print</span> <span class="s">&quot;2-gram sentence: </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-    <span class="n">get2GramSentenceRandom</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+        # Choose a pair with weighted probability from the choice list
+        word = weighted_choice(choices)[1]
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Start word: and
-2-gram sentence: &quot; and almost have allowed her model of her letter and goodness oh cried elizabeth this event of several years of &quot;
+for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
+    print "Start word: %s" % word
+
+    print "2-gram sentence: \"",
+    get2GramSentenceRandom(word, 20)
+    print "\""
+
+Start word: and
+2-gram sentence: " and laughed the party we do not care of sense of you so far differ from the younger boys were "
 Start word: he
-2-gram sentence: &quot; he chiefly in oh lizzy continued i could he had been really amiable light as well and within her brother &quot;
+2-gram sentence: " he will probably been her relations was not by letting her fine i do you do not write again caroline "
 Start word: she
-2-gram sentence: &quot; she is very gentleness as well as usual with this agreement shall never more have long and though it not &quot;
+2-gram sentence: " she could not fetched them purposely kept from the tone is fifty after a servant who do it was indeed "
 Start word: when
-2-gram sentence: &quot; when he was not justify the world who are very kind from something was bestowed on looking up the loss &quot;
+2-gram sentence: " when they descended on the rest of poor regiment where he takes part of hunsford every glance from making two "
 Start word: john
-2-gram sentence: &quot; john with cold was first stage of dignity with the letter was convinced from much in the ball at all &quot;
+2-gram sentence: " john told me was as you would not but whatever might not hope she had passed it so i have "
 Start word: never
-2-gram sentence: &quot; never let me jane to her going there but i do not to the most likely that whatever his reserve &quot;
+2-gram sentence: " never exert himself the only be acceptable to my pretensions whatever manner that she had been hurt by miss bingley "
 Start word: i
-2-gram sentence: &quot; i had one of self destined for you must feel the project gutenberg volunteers and of an unpleasant sort of &quot;
+2-gram sentence: " i had ever be considered her former way said lydia had she yes ma am only shows some part of "
 Start word: how
-2-gram sentence: &quot; how many weeks and loving them though it is tolerably till the neighbourhood it to equal to elizabeth could not &quot;
-</pre>
-</div>
-</div>
+2-gram sentence: " how to your success and fearful of sense of importance in their income as his favour of it was not "
+</code></pre>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Now that's way more interesting!</strong> Those are starting to look like sentences!</p>
 
 <pre><code>*Note* It's pretty interesting to see that for the sentence " when he believed him from the amiable but mrs hurst s being ill of being the discussion of course of ", we have hurst s, which we can tell came from Hurst's, an artifact of our stripping away all punctuation but keeping the s.
-
 </code></pre>
+
 <p>Let's try a longer sentence</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">word</span> <span class="o">=</span> <span class="s">&#39;it&#39;</span>
-<span class="k">print</span> <span class="s">&quot;Start word: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">word</span>
-<span class="k">print</span> <span class="s">&quot;2-gram sentence: </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-<span class="n">get2GramSentenceRandom</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
-</pre></div>
+<pre><code>word = 'it'
+print "Start word: %s" % word
+print "2-gram sentence: \"",
+get2GramSentenceRandom(word, 50)
+print "\""
 
-</div>
-</div>
-</div>
+Start word: it
+2-gram sentence: " it impossible not well inquire replied jane one communication of them only hear that she quitted the hope that he started and all what can never look at least if you he had ended only consider that it aloud if a comfort of her to be in paragraph e or "
+</code></pre>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Start word: it
-2-gram sentence: &quot; it would be the netherfield for whatever might see mr and show off two years had at dinner was banished and by her inquiries about it was unluckily for my own fault with an unforgiving speech they proposed being married and address that mr denny himself on mr bennet s &quot;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Pretty cool, lets see what happens when we go to N-grams above 2.</p>
-<h2 id="Tri-grams-and-more">Tri-grams and more<a class="anchor-link" href="#Tri-grams-and-more">&#182;</a></h2><p>Okay, let's create a Ngram generator that can let us make ngrams of arbitrary sizes</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">generateNgram</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">gram</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    
-    <span class="c"># Some helpers to keep us crashing the PC for now</span>
-    <span class="k">assert</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">20</span>
-    
-    <span class="c"># Populate N-gram dictionary</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">gram</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-            <span class="n">gram</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">gram</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<h2>
+<a id="tri-grams-and-more" class="anchor" href="#tri-grams-and-more" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tri-grams and more</h2>
 
-    <span class="c"># Turn into a list of (word, count) sorted by count from most to least</span>
-    <span class="n">gram</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">gram</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span> <span class="o">-</span><span class="n">count</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">gram</span>
+<p>Okay, let's create a Ngram generator that can let us make ngrams of arbitrary sizes</p>
 
-<span class="n">trigram</span> <span class="o">=</span> <span class="n">generateNgram</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="c"># Print top 20 most frequent ngrams</span>
-<span class="k">print</span> <span class="n">trigram</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
-</pre></div>
+<pre><code>def generateNgram(n=1):
+    gram = dict()
 
-</div>
-</div>
-</div>
+    # Some helpers to keep us crashing the PC for now
+    assert n &gt; 0 and n &lt; 20
 
-<div class="output_wrapper">
-<div class="output">
+    # Populate N-gram dictionary
+    for i in xrange(len(words)-(n-1)):
+        key = tuple(words[i:i+n])
+        if gram.has_key(key):
+            gram[key] += 1
+        else:
+            gram[key] = 1
 
+    # Turn into a list of (word, count) sorted by count from most to least
+    gram = sorted(gram.items(), key=lambda (_, count): -count)
+    return gram
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[((&apos;i&apos;, &apos;do&apos;, &apos;not&apos;), 62), ((&apos;i&apos;, &apos;am&apos;, &apos;sure&apos;), 62), ((&apos;project&apos;, &apos;gutenberg&apos;, &apos;tm&apos;), 57), ((&apos;as&apos;, &apos;soon&apos;, &apos;as&apos;), 55), ((&apos;she&apos;, &apos;could&apos;, &apos;not&apos;), 50), ((&apos;that&apos;, &apos;he&apos;, &apos;had&apos;), 37), ((&apos;in&apos;, &apos;the&apos;, &apos;world&apos;), 34), ((&apos;it&apos;, &apos;would&apos;, &apos;be&apos;), 34), ((&apos;i&apos;, &apos;am&apos;, &apos;not&apos;), 32), ((&apos;i&apos;, &apos;dare&apos;, &apos;say&apos;), 31), ((&apos;the&apos;, &apos;project&apos;, &apos;gutenberg&apos;), 31), ((&apos;could&apos;, &apos;not&apos;, &apos;be&apos;), 30), ((&apos;it&apos;, &apos;was&apos;, &apos;not&apos;), 30), ((&apos;that&apos;, &apos;he&apos;, &apos;was&apos;), 29), ((&apos;mr&apos;, &apos;darcy&apos;, &apos;s&apos;), 29), ((&apos;that&apos;, &apos;it&apos;, &apos;was&apos;), 28), ((&apos;on&apos;, &apos;the&apos;, &apos;subject&apos;), 28), ((&apos;as&apos;, &apos;well&apos;, &apos;as&apos;), 27), ((&apos;would&apos;, &apos;have&apos;, &apos;been&apos;), 27), ((&apos;of&apos;, &apos;mr&apos;, &apos;darcy&apos;), 27)]
-</pre>
-</div>
-</div>
+trigram = generateNgram(3)
+# Print top 20 most frequent ngrams
+print trigram[:20]
 
-</div>
-</div>
+[(('i', 'do', 'not'), 62), (('i', 'am', 'sure'), 62), (('project', 'gutenberg', 'tm'), 57), (('as', 'soon', 'as'), 55), (('she', 'could', 'not'), 50), (('that', 'he', 'had'), 37), (('in', 'the', 'world'), 34), (('it', 'would', 'be'), 34), (('i', 'am', 'not'), 32), (('i', 'dare', 'say'), 31), (('the', 'project', 'gutenberg'), 31), (('could', 'not', 'be'), 30), (('it', 'was', 'not'), 30), (('that', 'he', 'was'), 29), (('mr', 'darcy', 's'), 29), (('that', 'it', 'was'), 28), (('on', 'the', 'subject'), 28), (('as', 'well', 'as'), 27), (('would', 'have', 'been'), 27), (('of', 'mr', 'darcy'), 27)]
+</code></pre>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Cool! Okay, let's see a selection of sentences for N-grams with N = 2 to 10 and a few starting words!</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">getNGramSentenceRandom</span><span class="p">(</span><span class="n">gram</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">print</span> <span class="n">word</span><span class="p">,</span>
-        <span class="c"># Get all possible elements ((first word, second word), frequency)</span>
-        <span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="n">element</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">gram</span> <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">word</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">choices</span><span class="p">:</span>
-            <span class="k">break</span>
-        
-        <span class="c"># Choose a pair with weighted probability from the choice list</span>
-        <span class="n">word</span> <span class="o">=</span> <span class="n">weighted_choice</span><span class="p">(</span><span class="n">choices</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c"># Generate ngram list</span>
-    <span class="k">print</span>
-    <span class="k">print</span> <span class="s">&quot;Generating </span><span class="si">%d</span><span class="s">-gram list...&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span>
-    <span class="n">ngram</span> <span class="o">=</span> <span class="n">generateNgram</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">&quot;Done&quot;</span>
-    
-    <span class="c"># Try out a bunch of sentences</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
-        <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%d</span><span class="s">-gram: </span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span>
-        <span class="n">getNGramSentenceRandom</span><span class="p">(</span><span class="n">ngram</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
-</pre></div>
+<pre><code>def getNGramSentenceRandom(gram, word, n = 50):
+    for i in xrange(n):
+        print word,
+        # Get all possible elements ((first word, second word), frequency)
+        choices = [element for element in gram if element[0][0] == word]
+        if not choices:
+            break
 
-</div>
-</div>
-</div>
+        # Choose a pair with weighted probability from the choice list
+        word = weighted_choice(choices)[1]
+for n in xrange(2,10):
+    # Generate ngram list
+    print
+    print "Generating %d-gram list..." % n,
+    ngram = generateNgram(n)
+    print "Done"
 
-<div class="output_wrapper">
-<div class="output">
+    # Try out a bunch of sentences
+    for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
+        print "  %d-gram: \"" % n,
+        getNGramSentenceRandom(ngram, word, 15)
+        print "\""
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
 Generating 2-gram list... Done
-  2-gram: &quot; and opening in such an occasion of a woman must be mr darcy by a &quot;
-  2-gram: &quot; he was commissioning her exuberant spirits or next week she feels bingley was persuaded yourself &quot;
-  2-gram: &quot; she were over the river in acceding to be obliged to the room no stay &quot;
-  2-gram: &quot; when they had a table with louisa i was very confined for supposing his house &quot;
-  2-gram: &quot; john with other causes must be secure let me he i am determined if i &quot;
-  2-gram: &quot; never without anger could come mr darcy much satisfaction in the intelligence his inquiries after &quot;
-  2-gram: &quot; i do me you believe him and though the evening brought a disadvantage in his &quot;
-  2-gram: &quot; how many others then returned to know and bent on the address that you what &quot;
+  2-gram: " and aunt her mother s laws and agreeable surprise in the objections i have more "
+  2-gram: " he had not be an abominable i am i desire to ride to the dishes "
+  2-gram: " she must feel it would go so many many of a part of jane would "
+  2-gram: " when they were to all praise of appearing highly expedient to him good wishes it "
+  2-gram: " john with the expectation of jane must be lamented because she hoped to account of "
+  2-gram: " never saw no one before michaelmas but there was neither such a young lady lucas "
+  2-gram: " i anything but a rival to me fresh excuse for that this be successful love "
+  2-gram: " how to be in without some time since they were consigned over wickham s estate "
 
 Generating 3-gram list... Done
-  3-gram: &quot; and indeed but i have mortified mine believe him to see jane what is strong &quot;
-  3-gram: &quot; he chose to bear these two eldest daughter she could contain herself which his daughters &quot;
-  3-gram: &quot; she said he had often that they who had hoped it may arise chiefly for &quot;
-  3-gram: &quot; when you think she might be to welcome to be where where else elizabeth s &quot;
-  3-gram: &quot; john told me in a man chapter elizabeth suspected enough for i wonder said she &quot;
-  3-gram: &quot; never had been strange yes sir has been valued that he believed to step was &quot;
-  3-gram: &quot; i feel how to pratt for preparing to read the praise is a sort of &quot;
-  3-gram: &quot; how pleased to us i went on the table while these tastes had been able &quot;
+  3-gram: " and never for the table between darcy s approaching the beginning but the object to "
+  3-gram: " he replied endeavouring to be in gracechurch street who had not sink under the list "
+  3-gram: " she when so much by mr collins no further opportunities of advantage the year ago "
+  3-gram: " when i shall see her coughs said i do you mean by what i hope "
+  3-gram: " john told me were insufficient to the father she had less eager in hertfordshire anxiously "
+  3-gram: " never disgrace which officers had promised me for a compliment to afford by no look "
+  3-gram: " i am very great to him from netherfield and the acknowledged had formerly spoken in "
+  3-gram: " how is that point upon herself and once for the ladies in which is sadly "
 
 Generating 4-gram list... Done
-  4-gram: &quot; and generous good enough to see the carriage was most creditable gentlemanlike man you give &quot;
-  4-gram: &quot; he detained in he will believe not have been listened in your hearing this event &quot;
-  4-gram: &quot; she told me for continuing their pleasantest preservative she finds miss bennet will make his &quot;
-  4-gram: &quot; when mrs forster said miss bingley her affection sometimes one looked the morning mr wickham &quot;
-  4-gram: &quot; john told he could think she really too much for it on he wishes and &quot;
-  4-gram: &quot; never reach when persons whose mind and so steady candour is my daughters uncommonly fast &quot;
-  4-gram: &quot; i shall try to be finer success he has very little delicate a beautiful creature &quot;
-  4-gram: &quot; how mr bennet had been too full of his sisters may be urged the happy &quot;
+  4-gram: " and whenever any time without her sister panting for no reason in those beautiful oaks "
+  4-gram: " he liked him too soon as i shall be much for his misfortunes have been "
+  4-gram: " she consulted one sister we will make them directly retreating but that he thinks of "
+  4-gram: " when they entered the table what they were not be they solaced their fortune she "
+  4-gram: " john told miss bingley both as she was at pemberley house amidst the excellent understanding "
+  4-gram: " never could she did she had given him in such very long does not he "
+  4-gram: " i suppose are as lady catherine s being loved them if i really vexed her "
+  4-gram: " how he deserves elizabeth eagerly calling back on i wish sir william was very constantly "
 
 Generating 5-gram list... Done
-  5-gram: &quot; and of her a few weeks with the son unless you have nothing but however &quot;
-  5-gram: &quot; he now and herself said you never thought of associating with scarlet coat and trust &quot;
-  5-gram: &quot; she said lately learned some who is so much as this room she soon forgotten &quot;
-  5-gram: &quot; when you would have to their journey from the second time of all that she &quot;
-  5-gram: &quot; john told her for my life could be hurt if you must not sixpence of &quot;
-  5-gram: &quot; never see as to scotland but of my power and give you must have known &quot;
-  5-gram: &quot; i do it is over he was all walking if my mother followed he means &quot;
-  5-gram: &quot; how pleasant man quite comfortable on my youngest girl and are not till roused to &quot;
+  5-gram: " and i have been more i felt himself to find it shows that though his "
+  5-gram: " he was a hurry as soon out to imagine till they are joking lizzy said "
+  5-gram: " she was the conclusion of such a suitable to your humility mr collins arrived mrs "
+  5-gram: " when she read the former residence in such an understanding the subject before any extraordinary "
+  5-gram: " john with a family everybody as to be the concern in reply to every body "
+  5-gram: " never heard nothing of poverty comparative height of speaking mr wickham repeatedly exclaiming i imagine "
+  5-gram: " i will never play and when you had alone what he asked him how lydia "
+  5-gram: " how she made no farther it will not afraid i can he was another had "
 
 Generating 6-gram list... Done
-  6-gram: &quot; and anxiety she stared many pleasant nature shall not thank me less agreeable his coming &quot;
-  6-gram: &quot; he offered to whom you will thank god s manners and to everybody was as &quot;
-  6-gram: &quot; she would be secure and kitty fretfully when that is all the project gutenberg tm &quot;
-  6-gram: &quot; when opposed their relationship to justify it is impossible not hear any rate there is &quot;
-  6-gram: &quot; john with an hour s going that scenes but then owned that she spoke and &quot;
-  6-gram: &quot; never been made himself in cried elizabeth was then shut the acutest kind as you &quot;
-  6-gram: &quot; i am sure said elizabeth was sure they are not and charitable donations in love &quot;
-  6-gram: &quot; how could not many circumstances of which nature had been at this desirable for you &quot;
+  6-gram: " and elizabeth was to think caroline s shop and affording her daughter mr robinson did "
+  6-gram: " he had been mr bennet s sour looks just over hertfordshire and such very powerful "
+  6-gram: " she drew their view it was therefore instead of her drew them with incredulous solicitude "
+  6-gram: " when she really with us give the happy he is the appearance created a prudential "
+  6-gram: " john with her fancy her inquiries after sitting together because there was exceedingly troublesome she "
+  6-gram: " never have been he did elizabeth felt that her to dance with whom they are "
+  6-gram: " i grieve to make no effect of my own want one of mr darcy but "
+  6-gram: " how much better have imagined that the whole scene between us we first and she "
 
 Generating 7-gram list... Done
-  7-gram: &quot; and the offer of advantage spent by his having promised to anybody s home and &quot;
-  7-gram: &quot; he had no answer and that all the end and where can know more cheerfully &quot;
-  7-gram: &quot; she sent them there was uppermost in that horrid man on either but to make &quot;
-  7-gram: &quot; when the best but though my aunt leaving wickham would have often disdained the sense &quot;
-  7-gram: &quot; john told him in mirth for additional cost and i speak with her daughters i &quot;
-  7-gram: &quot; never spoke to appear to give her turn her note aloud and such a period &quot;
-  7-gram: &quot; i must abominate writing because you have both must go on this subject of it &quot;
-  7-gram: &quot; how she will probably strike into her and was deserved but slightly surveying it is &quot;
+  7-gram: " and that would not laugh at longbourn desiring her return my friend s eyes in "
+  7-gram: " he poor family they met he imagined that i wish to throw any way to "
+  7-gram: " she came in so mr collins cried up the door with the same way to "
+  7-gram: " when he might be and not return to colonel and steadfastly given him mr bennet "
+  7-gram: " john with a great an accidental meeting him or other day but yet i do "
+  7-gram: " never pay his marrying one of most wished for your sash my watchfulness has the "
+  7-gram: " i have gone down and the sense of superior bingley but whatever were consigned over "
+  7-gram: " how could colonel of a sensibility when the whole party at his head i should "
 
 Generating 8-gram list... Done
-  8-gram: &quot; and though she was instantly on her surprise of the idea of peculiar vexation she &quot;
-  8-gram: &quot; he is that consoled her feel it taken leave to the advantage the survivor this &quot;
-  8-gram: &quot; she came from the effect on the case the table in town myself but as &quot;
-  8-gram: &quot; when sanctioned mr bingley and vexation to mrs bennet accepted but she had the gouldings &quot;
-  8-gram: &quot; john told his ankle in the kindness madam he would not affect concern which he &quot;
-  8-gram: &quot; never had mentioned earlier that if he had set forth into the mince pies for &quot;
-  8-gram: &quot; i could marry without forming any stay at his mind every glance at all the &quot;
-  8-gram: &quot; how very much of what to bring them and application was before they should be &quot;
+  8-gram: " and at all the insolent and within view the skill of our sentiments you at "
+  8-gram: " he was completely puzzled mrs bennet accompanied by kitty she shall hope in every thing "
+  8-gram: " she turned again and perhaps it is a shorter space of relations at length return "
+  8-gram: " when the truth the acquaintance long enough do on the netherfield i am glad you "
+  8-gram: " john told the invitation could have the terms again her father however bare of mr "
+  8-gram: " never have already written with an upper window watching her family and danced next morning "
+  8-gram: " i feel as such a remarkably well as deficient in and order to make his "
+  8-gram: " how much less interesting object but my mind my word of felicity really anxious to "
 
 Generating 9-gram list... Done
-  9-gram: &quot; and help feeling towards the village when they had not but to me mr bennet &quot;
-  9-gram: &quot; he was the gentleman looking for i am sure she left the door jane in &quot;
-  9-gram: &quot; she had better for the circumstances to my dear replied jane was scarcely an expostulation &quot;
-  9-gram: &quot; when i must be long as marked her to eight o clock and from meryton &quot;
-  9-gram: &quot; john with a proper place which we may depend on every wish of thought it &quot;
-  9-gram: &quot; never heard mr darcy if you have actually persists in the course of fatigue and &quot;
-  9-gram: &quot; i ever induce me so indulgent as the whole of happiness in her progress was &quot;
-  9-gram: &quot; how very agreeable woman may elect to hear a relation lady catherine she ever since &quot;
-</pre>
-</div>
-</div>
+  9-gram: " and was to my youngest is affection elizabeth went into her i you are wanted "
+  9-gram: " he replied as to hear of the possibility of her and the owner of assisting "
+  9-gram: " she seldom appeared kitty stared at longbourn if a few weeks with great deal to "
+  9-gram: " when bingley had before expressed her home these two people on either i shall be "
+  9-gram: " john told us long to kitty for him but let us of its beauty elegance "
+  9-gram: " never occurred to stay i will not have been quite so excessively deceived in quest "
+  9-gram: " i am sure unless the greater that they had cost him his seeing them and "
+  9-gram: " how to the compliment of being most active useful and she been intended to have "
+</code></pre>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>You can clearly see the sentences getting better and better with larger n-grams, this correlates to the ngram having more foresight into the sentence structure.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># Generate 10gram list</span>
-<span class="k">print</span>
-<span class="k">print</span> <span class="s">&quot;Generating </span><span class="si">%d</span><span class="s">-gram list...&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span>
-<span class="n">gram10</span> <span class="o">=</span> <span class="n">generateNgram</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;Done&quot;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+<pre><code># Generate 10gram list
+print
+print "Generating %d-gram list..." % n,
+gram10 = generateNgram(10)
+print "Done"
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
 Generating 9-gram list... Done
-</pre>
-</div>
-</div>
+</code></pre>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's play with the 10gram and see what sort of sentence comes out.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># Try out a bunch of sentences</span>
-<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
-    <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%d</span><span class="s">-gram: </span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span>
-    <span class="n">getNGramSentenceRandom</span><span class="p">(</span><span class="n">ngram</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>
-</pre></div>
+<pre><code># Try out a bunch of sentences
+for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
+    print "  %d-gram: \"" % n,
+    getNGramSentenceRandom(ngram, word, 100)
+    print "\""
 
-</div>
-</div>
-</div>
+  9-gram: " and tried to please she is somewhere i am much but he had felt jane said he means discouraged by many people did she promised to see of mrs collins in every savage can you the following each other side by his felicity to request that we shall hope there is unaccountable my readiness to leave would be happy than they parted from jane exclaimed elizabeth was now and unvarying society as placing a word especially towards them to for he briefly replied to occur in her friend but he had brought up to invite him proud ill natured and "
+  9-gram: " he looked a very ill health imputing his attachment i had her power of which case here beg you will be learnt for a man ten thousand pounds were persuaded of removing from their sisters are very promising thing in the ladies drove off we acted is about netherfield i should at last how well cried her the room was still he first came and thought and at rosings and answer therefore without any directions about three or have led him conditionally only six officers may be equalled by his respect forbid it would not repeat every doubt they were "
+  9-gram: " she thought i should not thought of my head of what she had suffered and proofread public domain print editions will be sure we do nothing the two women had heard him to prepare or refrain from a step forward may compare our best part of the room and each of both sides but as possible and be greater than gratified indeed i suppose he had sources of lydia s fancying himself and my name throughout numerous but bingley has left london and returned home but of injuring your rejection of natural degree of a visit till sir william who "
+  9-gram: " when we darcy drawn to the usual satisfaction they must not be the next sentence might occasionally a voice was nothing due to longbourn and let me for the happy spirits which had seen him at each and had related the particulars but she times his frequent mention such gentleness in it could not that the eye was a proposal accepted the pemberley with us if you thought only regretting that he held out the honour of accident that in this subject occasioned his returning to the impertinent myself what are never distinguished by her justice he was such a "
+  9-gram: " john with such civility mr bennet was trying to lady lucas to be entitled to expect to send her in the work on saturday night out of my uncle mr darcy has been revealed for though her and with you all mamma what they had certainly be freely to longbourn and the food of the man of writing and introduce you like him walking several minutes said with perfect symmetry in a melancholy to disguise yourself mr darcy it was occasionally laughing at her though she was persuaded that i give pleasure i wish to be to be in the "
+  9-gram: " never act do not hear it is to have mr darcy as well bred were surprised was satisfactory a family obstacles of mr wickham should be as they ought to the room at all the honour which as he would now for my fair as to purchase in the case the ladies in some curious to be so full of her ladyship was a dozen in nursing your account for by everyone to discharge of merit with which had been to think of a matter it to her friends than what she was exceedingly as for the greatest patience in "
+  9-gram: " i believe her daughter would not to anybody for a renewal of either of a cause of her own but she longed to find herself the rest of letting them and shopping and talk and just from it to have been so alarming you wish to her she ventured to music cried elizabeth had for avoiding him as soon as we have been led to fret over this may consult the pleasure in the fee is indeed i came in bingley saw herself as warmly in which must have been cautious of her mother s speech she was not judge "
+  9-gram: " how strange yes it is insinuating and her reflections by repeated conversations occurring at that no one admitted a very jane however temporary its windings but lady catherine with herself and gave birth to return they could be in the word that he meant to any father and excepting even at longbourn of girl to a companion lydia and agreeable woman but that is to newcastle and consequently after her mother she wanted you were just returned instantly driven from a quarter than marriage of that emphatic exclamation cried bingley came to fight wickham suspended amongst which had feared it "
+</code></pre>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>  9-gram: &quot; and she said her manner of whose return and i am married before what we may take his wife conducted yourselves so well as much when i entered the same and making her mother as for being hereafter her repeatedly to mrs bennet one of enjoying herself since we know it they are not be killed and once gone jane nor faulty degree of gratitude by letting her heart you so dull as follows having passed she asked her plan could not lady lucas whom nobody in our friend denny denied knowing forgive me against herself she will die of &quot;
-  9-gram: &quot; he supposed that colonel fitzwilliam s good brother is not be private care to ask when the morning within ten minutes before they knew myself sincerely i cannot always kept up any of her dear i dare say would not but could not till the matter cried when the country he had any such a family they had many pauses must have him before was meeting her daughters were directed her for he appeared again she could not plain chapter a intercourse a christian but haughty it when persons who does not have long he set amazed at table where &quot;
-  9-gram: &quot; she grew on miss bennet accepted a girl it gratified by your porridge and entreating her to return the means unprotected or obtain a capital added what i am not suit as quietly answered in rejecting him with him and the hand with you could not imagine it became perfect composure when mrs bennet looking farther northwards than either or having received soon but i have got up everything right to be by a very sorry however mrs phillips first points she hardly hold her letters you will influence a letter and though in hunsford every moment upon me to &quot;
-  9-gram: &quot; when she saw the lady was a project gutenberg tm trademark as good as may we had called economy was able to advantage of it is probably superior to me when the persuasion you are gratefully accepted the danger of a proper civilities bingley were standing and beg leave his kindness mr darcy thought only a very proud but this work of a letter was a little of his return mr darcy who seems he was on the hermitage elizabeth entered the regulars and his sisters to consider poetry as any place that my dressing gown before and miss bingley &quot;
-  9-gram: &quot; john with some prettier girls walked about it was distressed but at all that bingley with lizzy said they never yet for a little compassion to prove had ever the more contracted into the bride as they had most improbable event of the greatest satisfaction of all but without ceremony was rather a lively tone which she might expect such confusion said fitzwilliam without knowing that it may lead me to elizabeth when in company for i never to all others were going to make the honour of that he was not altered what is improved and mrs bennet scarcely &quot;
-  9-gram: &quot; never seen miss bingley standing on her situation remained therefore soon as before she affectionately taking you again the other warranties of not expect jane constantly so i am not help giving her ease with mutual desire of i had been was alone after an earnest i cannot fix on the point out as much grown girl but as soon satisfied and praise on meeting both sat with whom he i speak with no such behaviour equally ill opinion in elizabeth was forced to stay at rosings in without seeming really believe a companion added she began scolding her through &quot;
-  9-gram: &quot; i had such a wish to visit them with him accidentally in which shortly have been considered it is desired effect of their acquaintance still increasing and conciliatory manners and i know not afraid her heart you mean as to the motion of lydia what i must feel something of superior execution he was as well as he should stand by undervaluing their favourable than hurrying instantly understood that led by his dependence when they were to whom he dines here this for incivility though it will be as the united to write very respectable pleasures and elizabeth could call &quot;
-  9-gram: &quot; how shall be so soon as warmly but no connections their share of general habits that his gig and when their former my affection to eight o clock in which brought only to set off and pride he had resolved to attribute to be aware that i shall though she did mr bennet have a part i cannot last how sincerely i must require and was attentive to do not her anxious circumspection of her how could have been designed for him my aunt promised letter i believe me so imprudence forgotten there are not receiving so mildly to have &quot;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Looks almost like normal sentences if you squint a little! Well, that was fun. Next up let's see some ways to improve upon this.</p>
+
 <p>Instead of just taking the next word every time, we could take the next k words etc.</p>
-<p>To be continue...</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre> 
-</pre></div>
+<p>To be continued...</p>
 
-</div>
-</div>
-</div>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Elucidation/Ngram-Tutorial">Ngram-tutorial</a> is maintained by <a href="https://github.com/Elucidation">Elucidation</a>.</span>
 
-</div>
-<!-- END -->
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
