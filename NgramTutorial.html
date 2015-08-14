@@ -188,7 +188,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;pg1342.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -229,10 +229,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;[^A-Za-z]+&#39;</span><span class="p">,</span> <span class="n">txt</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;[^A-Za-z]+&#39;</span><span class="p">,</span> <span class="n">txt</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
 <span class="n">words</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span> <span class="c"># Remove empty strings</span>
 
 <span class="c"># Print length of list</span>
@@ -272,7 +273,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">sets</span>
@@ -319,7 +320,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># See the last 10 pairs</span>
@@ -366,7 +367,7 @@ new ebooks
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[192]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">word_pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
@@ -413,7 +414,7 @@ new ebooks
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[193]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">gram1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -463,7 +464,7 @@ new ebooks
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[194]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">gram2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -515,7 +516,7 @@ new ebooks
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[195]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">start_word</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
@@ -546,7 +547,7 @@ new ebooks
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I just went ahead and chose the word that appears 1/4 of the way into words, random enough.</p>
+<p>I just went ahead and chose the word that appears $1/4$ of the way into words, random enough.</p>
 <p>Now in a loop, iterate through the frequency list (most frequent first) and see if it matches the first word in a pair, if so, the next word is the second element in the word pair, and continue with that word. Stop after N words or the list does not contain that word.</p>
 
 <pre><code>*Note* : gram2 is a list that contains (key,value) where key is a word pair (first, second),
@@ -557,7 +558,7 @@ new ebooks
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[196]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">get2GramSentence</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
@@ -608,7 +609,7 @@ new ebooks
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
@@ -665,7 +666,7 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">random</span>
@@ -697,7 +698,7 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span> <span class="s">&#39;john&#39;</span><span class="p">,</span> <span class="s">&#39;never&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;how&#39;</span><span class="p">]:</span>
@@ -719,21 +720,21 @@ Start word: how
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Start word: and
-2-gram sentence: &quot; and laughed the party we do not care of sense of you so far differ from the younger boys were &quot;
+2-gram sentence: &quot; and almost have allowed her model of her letter and goodness oh cried elizabeth this event of several years of &quot;
 Start word: he
-2-gram sentence: &quot; he will probably been her relations was not by letting her fine i do you do not write again caroline &quot;
+2-gram sentence: &quot; he chiefly in oh lizzy continued i could he had been really amiable light as well and within her brother &quot;
 Start word: she
-2-gram sentence: &quot; she could not fetched them purposely kept from the tone is fifty after a servant who do it was indeed &quot;
+2-gram sentence: &quot; she is very gentleness as well as usual with this agreement shall never more have long and though it not &quot;
 Start word: when
-2-gram sentence: &quot; when they descended on the rest of poor regiment where he takes part of hunsford every glance from making two &quot;
+2-gram sentence: &quot; when he was not justify the world who are very kind from something was bestowed on looking up the loss &quot;
 Start word: john
-2-gram sentence: &quot; john told me was as you would not but whatever might not hope she had passed it so i have &quot;
+2-gram sentence: &quot; john with cold was first stage of dignity with the letter was convinced from much in the ball at all &quot;
 Start word: never
-2-gram sentence: &quot; never exert himself the only be acceptable to my pretensions whatever manner that she had been hurt by miss bingley &quot;
+2-gram sentence: &quot; never let me jane to her going there but i do not to the most likely that whatever his reserve &quot;
 Start word: i
-2-gram sentence: &quot; i had ever be considered her former way said lydia had she yes ma am only shows some part of &quot;
+2-gram sentence: &quot; i had one of self destined for you must feel the project gutenberg volunteers and of an unpleasant sort of &quot;
 Start word: how
-2-gram sentence: &quot; how to your success and fearful of sense of importance in their income as his favour of it was not &quot;
+2-gram sentence: &quot; how many weeks and loving them though it is tolerably till the neighbourhood it to equal to elizabeth could not &quot;
 </pre>
 </div>
 </div>
@@ -759,7 +760,7 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">word</span> <span class="o">=</span> <span class="s">&#39;it&#39;</span>
@@ -780,7 +781,7 @@ Start word: how
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Start word: it
-2-gram sentence: &quot; it impossible not well inquire replied jane one communication of them only hear that she quitted the hope that he started and all what can never look at least if you he had ended only consider that it aloud if a comfort of her to be in paragraph e or &quot;
+2-gram sentence: &quot; it would be the netherfield for whatever might see mr and show off two years had at dinner was banished and by her inquiries about it was unluckily for my own fault with an unforgiving speech they proposed being married and address that mr denny himself on mr bennet s &quot;
 </pre>
 </div>
 </div>
@@ -802,7 +803,7 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">generateNgram</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -859,7 +860,7 @@ Start word: how
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">getNGramSentenceRandom</span><span class="p">(</span><span class="n">gram</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
@@ -898,84 +899,84 @@ Start word: how
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Generating 2-gram list... Done
-  2-gram: &quot; and aunt her mother s laws and agreeable surprise in the objections i have more &quot;
-  2-gram: &quot; he had not be an abominable i am i desire to ride to the dishes &quot;
-  2-gram: &quot; she must feel it would go so many many of a part of jane would &quot;
-  2-gram: &quot; when they were to all praise of appearing highly expedient to him good wishes it &quot;
-  2-gram: &quot; john with the expectation of jane must be lamented because she hoped to account of &quot;
-  2-gram: &quot; never saw no one before michaelmas but there was neither such a young lady lucas &quot;
-  2-gram: &quot; i anything but a rival to me fresh excuse for that this be successful love &quot;
-  2-gram: &quot; how to be in without some time since they were consigned over wickham s estate &quot;
+  2-gram: &quot; and opening in such an occasion of a woman must be mr darcy by a &quot;
+  2-gram: &quot; he was commissioning her exuberant spirits or next week she feels bingley was persuaded yourself &quot;
+  2-gram: &quot; she were over the river in acceding to be obliged to the room no stay &quot;
+  2-gram: &quot; when they had a table with louisa i was very confined for supposing his house &quot;
+  2-gram: &quot; john with other causes must be secure let me he i am determined if i &quot;
+  2-gram: &quot; never without anger could come mr darcy much satisfaction in the intelligence his inquiries after &quot;
+  2-gram: &quot; i do me you believe him and though the evening brought a disadvantage in his &quot;
+  2-gram: &quot; how many others then returned to know and bent on the address that you what &quot;
 
 Generating 3-gram list... Done
-  3-gram: &quot; and never for the table between darcy s approaching the beginning but the object to &quot;
-  3-gram: &quot; he replied endeavouring to be in gracechurch street who had not sink under the list &quot;
-  3-gram: &quot; she when so much by mr collins no further opportunities of advantage the year ago &quot;
-  3-gram: &quot; when i shall see her coughs said i do you mean by what i hope &quot;
-  3-gram: &quot; john told me were insufficient to the father she had less eager in hertfordshire anxiously &quot;
-  3-gram: &quot; never disgrace which officers had promised me for a compliment to afford by no look &quot;
-  3-gram: &quot; i am very great to him from netherfield and the acknowledged had formerly spoken in &quot;
-  3-gram: &quot; how is that point upon herself and once for the ladies in which is sadly &quot;
+  3-gram: &quot; and indeed but i have mortified mine believe him to see jane what is strong &quot;
+  3-gram: &quot; he chose to bear these two eldest daughter she could contain herself which his daughters &quot;
+  3-gram: &quot; she said he had often that they who had hoped it may arise chiefly for &quot;
+  3-gram: &quot; when you think she might be to welcome to be where where else elizabeth s &quot;
+  3-gram: &quot; john told me in a man chapter elizabeth suspected enough for i wonder said she &quot;
+  3-gram: &quot; never had been strange yes sir has been valued that he believed to step was &quot;
+  3-gram: &quot; i feel how to pratt for preparing to read the praise is a sort of &quot;
+  3-gram: &quot; how pleased to us i went on the table while these tastes had been able &quot;
 
 Generating 4-gram list... Done
-  4-gram: &quot; and whenever any time without her sister panting for no reason in those beautiful oaks &quot;
-  4-gram: &quot; he liked him too soon as i shall be much for his misfortunes have been &quot;
-  4-gram: &quot; she consulted one sister we will make them directly retreating but that he thinks of &quot;
-  4-gram: &quot; when they entered the table what they were not be they solaced their fortune she &quot;
-  4-gram: &quot; john told miss bingley both as she was at pemberley house amidst the excellent understanding &quot;
-  4-gram: &quot; never could she did she had given him in such very long does not he &quot;
-  4-gram: &quot; i suppose are as lady catherine s being loved them if i really vexed her &quot;
-  4-gram: &quot; how he deserves elizabeth eagerly calling back on i wish sir william was very constantly &quot;
+  4-gram: &quot; and generous good enough to see the carriage was most creditable gentlemanlike man you give &quot;
+  4-gram: &quot; he detained in he will believe not have been listened in your hearing this event &quot;
+  4-gram: &quot; she told me for continuing their pleasantest preservative she finds miss bennet will make his &quot;
+  4-gram: &quot; when mrs forster said miss bingley her affection sometimes one looked the morning mr wickham &quot;
+  4-gram: &quot; john told he could think she really too much for it on he wishes and &quot;
+  4-gram: &quot; never reach when persons whose mind and so steady candour is my daughters uncommonly fast &quot;
+  4-gram: &quot; i shall try to be finer success he has very little delicate a beautiful creature &quot;
+  4-gram: &quot; how mr bennet had been too full of his sisters may be urged the happy &quot;
 
 Generating 5-gram list... Done
-  5-gram: &quot; and i have been more i felt himself to find it shows that though his &quot;
-  5-gram: &quot; he was a hurry as soon out to imagine till they are joking lizzy said &quot;
-  5-gram: &quot; she was the conclusion of such a suitable to your humility mr collins arrived mrs &quot;
-  5-gram: &quot; when she read the former residence in such an understanding the subject before any extraordinary &quot;
-  5-gram: &quot; john with a family everybody as to be the concern in reply to every body &quot;
-  5-gram: &quot; never heard nothing of poverty comparative height of speaking mr wickham repeatedly exclaiming i imagine &quot;
-  5-gram: &quot; i will never play and when you had alone what he asked him how lydia &quot;
-  5-gram: &quot; how she made no farther it will not afraid i can he was another had &quot;
+  5-gram: &quot; and of her a few weeks with the son unless you have nothing but however &quot;
+  5-gram: &quot; he now and herself said you never thought of associating with scarlet coat and trust &quot;
+  5-gram: &quot; she said lately learned some who is so much as this room she soon forgotten &quot;
+  5-gram: &quot; when you would have to their journey from the second time of all that she &quot;
+  5-gram: &quot; john told her for my life could be hurt if you must not sixpence of &quot;
+  5-gram: &quot; never see as to scotland but of my power and give you must have known &quot;
+  5-gram: &quot; i do it is over he was all walking if my mother followed he means &quot;
+  5-gram: &quot; how pleasant man quite comfortable on my youngest girl and are not till roused to &quot;
 
 Generating 6-gram list... Done
-  6-gram: &quot; and elizabeth was to think caroline s shop and affording her daughter mr robinson did &quot;
-  6-gram: &quot; he had been mr bennet s sour looks just over hertfordshire and such very powerful &quot;
-  6-gram: &quot; she drew their view it was therefore instead of her drew them with incredulous solicitude &quot;
-  6-gram: &quot; when she really with us give the happy he is the appearance created a prudential &quot;
-  6-gram: &quot; john with her fancy her inquiries after sitting together because there was exceedingly troublesome she &quot;
-  6-gram: &quot; never have been he did elizabeth felt that her to dance with whom they are &quot;
-  6-gram: &quot; i grieve to make no effect of my own want one of mr darcy but &quot;
-  6-gram: &quot; how much better have imagined that the whole scene between us we first and she &quot;
+  6-gram: &quot; and anxiety she stared many pleasant nature shall not thank me less agreeable his coming &quot;
+  6-gram: &quot; he offered to whom you will thank god s manners and to everybody was as &quot;
+  6-gram: &quot; she would be secure and kitty fretfully when that is all the project gutenberg tm &quot;
+  6-gram: &quot; when opposed their relationship to justify it is impossible not hear any rate there is &quot;
+  6-gram: &quot; john with an hour s going that scenes but then owned that she spoke and &quot;
+  6-gram: &quot; never been made himself in cried elizabeth was then shut the acutest kind as you &quot;
+  6-gram: &quot; i am sure said elizabeth was sure they are not and charitable donations in love &quot;
+  6-gram: &quot; how could not many circumstances of which nature had been at this desirable for you &quot;
 
 Generating 7-gram list... Done
-  7-gram: &quot; and that would not laugh at longbourn desiring her return my friend s eyes in &quot;
-  7-gram: &quot; he poor family they met he imagined that i wish to throw any way to &quot;
-  7-gram: &quot; she came in so mr collins cried up the door with the same way to &quot;
-  7-gram: &quot; when he might be and not return to colonel and steadfastly given him mr bennet &quot;
-  7-gram: &quot; john with a great an accidental meeting him or other day but yet i do &quot;
-  7-gram: &quot; never pay his marrying one of most wished for your sash my watchfulness has the &quot;
-  7-gram: &quot; i have gone down and the sense of superior bingley but whatever were consigned over &quot;
-  7-gram: &quot; how could colonel of a sensibility when the whole party at his head i should &quot;
+  7-gram: &quot; and the offer of advantage spent by his having promised to anybody s home and &quot;
+  7-gram: &quot; he had no answer and that all the end and where can know more cheerfully &quot;
+  7-gram: &quot; she sent them there was uppermost in that horrid man on either but to make &quot;
+  7-gram: &quot; when the best but though my aunt leaving wickham would have often disdained the sense &quot;
+  7-gram: &quot; john told him in mirth for additional cost and i speak with her daughters i &quot;
+  7-gram: &quot; never spoke to appear to give her turn her note aloud and such a period &quot;
+  7-gram: &quot; i must abominate writing because you have both must go on this subject of it &quot;
+  7-gram: &quot; how she will probably strike into her and was deserved but slightly surveying it is &quot;
 
 Generating 8-gram list... Done
-  8-gram: &quot; and at all the insolent and within view the skill of our sentiments you at &quot;
-  8-gram: &quot; he was completely puzzled mrs bennet accompanied by kitty she shall hope in every thing &quot;
-  8-gram: &quot; she turned again and perhaps it is a shorter space of relations at length return &quot;
-  8-gram: &quot; when the truth the acquaintance long enough do on the netherfield i am glad you &quot;
-  8-gram: &quot; john told the invitation could have the terms again her father however bare of mr &quot;
-  8-gram: &quot; never have already written with an upper window watching her family and danced next morning &quot;
-  8-gram: &quot; i feel as such a remarkably well as deficient in and order to make his &quot;
-  8-gram: &quot; how much less interesting object but my mind my word of felicity really anxious to &quot;
+  8-gram: &quot; and though she was instantly on her surprise of the idea of peculiar vexation she &quot;
+  8-gram: &quot; he is that consoled her feel it taken leave to the advantage the survivor this &quot;
+  8-gram: &quot; she came from the effect on the case the table in town myself but as &quot;
+  8-gram: &quot; when sanctioned mr bingley and vexation to mrs bennet accepted but she had the gouldings &quot;
+  8-gram: &quot; john told his ankle in the kindness madam he would not affect concern which he &quot;
+  8-gram: &quot; never had mentioned earlier that if he had set forth into the mince pies for &quot;
+  8-gram: &quot; i could marry without forming any stay at his mind every glance at all the &quot;
+  8-gram: &quot; how very much of what to bring them and application was before they should be &quot;
 
 Generating 9-gram list... Done
-  9-gram: &quot; and was to my youngest is affection elizabeth went into her i you are wanted &quot;
-  9-gram: &quot; he replied as to hear of the possibility of her and the owner of assisting &quot;
-  9-gram: &quot; she seldom appeared kitty stared at longbourn if a few weeks with great deal to &quot;
-  9-gram: &quot; when bingley had before expressed her home these two people on either i shall be &quot;
-  9-gram: &quot; john told us long to kitty for him but let us of its beauty elegance &quot;
-  9-gram: &quot; never occurred to stay i will not have been quite so excessively deceived in quest &quot;
-  9-gram: &quot; i am sure unless the greater that they had cost him his seeing them and &quot;
-  9-gram: &quot; how to the compliment of being most active useful and she been intended to have &quot;
+  9-gram: &quot; and help feeling towards the village when they had not but to me mr bennet &quot;
+  9-gram: &quot; he was the gentleman looking for i am sure she left the door jane in &quot;
+  9-gram: &quot; she had better for the circumstances to my dear replied jane was scarcely an expostulation &quot;
+  9-gram: &quot; when i must be long as marked her to eight o clock and from meryton &quot;
+  9-gram: &quot; john with a proper place which we may depend on every wish of thought it &quot;
+  9-gram: &quot; never heard mr darcy if you have actually persists in the course of fatigue and &quot;
+  9-gram: &quot; i ever induce me so indulgent as the whole of happiness in her progress was &quot;
+  9-gram: &quot; how very agreeable woman may elect to hear a relation lady catherine she ever since &quot;
 </pre>
 </div>
 </div>
@@ -996,7 +997,7 @@ Generating 9-gram list... Done
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Generate 10gram list</span>
@@ -1038,7 +1039,7 @@ Generating 9-gram list... Done
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Try out a bunch of sentences</span>
@@ -1058,14 +1059,14 @@ Generating 9-gram list... Done
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>  9-gram: &quot; and tried to please she is somewhere i am much but he had felt jane said he means discouraged by many people did she promised to see of mrs collins in every savage can you the following each other side by his felicity to request that we shall hope there is unaccountable my readiness to leave would be happy than they parted from jane exclaimed elizabeth was now and unvarying society as placing a word especially towards them to for he briefly replied to occur in her friend but he had brought up to invite him proud ill natured and &quot;
-  9-gram: &quot; he looked a very ill health imputing his attachment i had her power of which case here beg you will be learnt for a man ten thousand pounds were persuaded of removing from their sisters are very promising thing in the ladies drove off we acted is about netherfield i should at last how well cried her the room was still he first came and thought and at rosings and answer therefore without any directions about three or have led him conditionally only six officers may be equalled by his respect forbid it would not repeat every doubt they were &quot;
-  9-gram: &quot; she thought i should not thought of my head of what she had suffered and proofread public domain print editions will be sure we do nothing the two women had heard him to prepare or refrain from a step forward may compare our best part of the room and each of both sides but as possible and be greater than gratified indeed i suppose he had sources of lydia s fancying himself and my name throughout numerous but bingley has left london and returned home but of injuring your rejection of natural degree of a visit till sir william who &quot;
-  9-gram: &quot; when we darcy drawn to the usual satisfaction they must not be the next sentence might occasionally a voice was nothing due to longbourn and let me for the happy spirits which had seen him at each and had related the particulars but she times his frequent mention such gentleness in it could not that the eye was a proposal accepted the pemberley with us if you thought only regretting that he held out the honour of accident that in this subject occasioned his returning to the impertinent myself what are never distinguished by her justice he was such a &quot;
-  9-gram: &quot; john with such civility mr bennet was trying to lady lucas to be entitled to expect to send her in the work on saturday night out of my uncle mr darcy has been revealed for though her and with you all mamma what they had certainly be freely to longbourn and the food of the man of writing and introduce you like him walking several minutes said with perfect symmetry in a melancholy to disguise yourself mr darcy it was occasionally laughing at her though she was persuaded that i give pleasure i wish to be to be in the &quot;
-  9-gram: &quot; never act do not hear it is to have mr darcy as well bred were surprised was satisfactory a family obstacles of mr wickham should be as they ought to the room at all the honour which as he would now for my fair as to purchase in the case the ladies in some curious to be so full of her ladyship was a dozen in nursing your account for by everyone to discharge of merit with which had been to think of a matter it to her friends than what she was exceedingly as for the greatest patience in &quot;
-  9-gram: &quot; i believe her daughter would not to anybody for a renewal of either of a cause of her own but she longed to find herself the rest of letting them and shopping and talk and just from it to have been so alarming you wish to her she ventured to music cried elizabeth had for avoiding him as soon as we have been led to fret over this may consult the pleasure in the fee is indeed i came in bingley saw herself as warmly in which must have been cautious of her mother s speech she was not judge &quot;
-  9-gram: &quot; how strange yes it is insinuating and her reflections by repeated conversations occurring at that no one admitted a very jane however temporary its windings but lady catherine with herself and gave birth to return they could be in the word that he meant to any father and excepting even at longbourn of girl to a companion lydia and agreeable woman but that is to newcastle and consequently after her mother she wanted you were just returned instantly driven from a quarter than marriage of that emphatic exclamation cried bingley came to fight wickham suspended amongst which had feared it &quot;
+<pre>  9-gram: &quot; and she said her manner of whose return and i am married before what we may take his wife conducted yourselves so well as much when i entered the same and making her mother as for being hereafter her repeatedly to mrs bennet one of enjoying herself since we know it they are not be killed and once gone jane nor faulty degree of gratitude by letting her heart you so dull as follows having passed she asked her plan could not lady lucas whom nobody in our friend denny denied knowing forgive me against herself she will die of &quot;
+  9-gram: &quot; he supposed that colonel fitzwilliam s good brother is not be private care to ask when the morning within ten minutes before they knew myself sincerely i cannot always kept up any of her dear i dare say would not but could not till the matter cried when the country he had any such a family they had many pauses must have him before was meeting her daughters were directed her for he appeared again she could not plain chapter a intercourse a christian but haughty it when persons who does not have long he set amazed at table where &quot;
+  9-gram: &quot; she grew on miss bennet accepted a girl it gratified by your porridge and entreating her to return the means unprotected or obtain a capital added what i am not suit as quietly answered in rejecting him with him and the hand with you could not imagine it became perfect composure when mrs bennet looking farther northwards than either or having received soon but i have got up everything right to be by a very sorry however mrs phillips first points she hardly hold her letters you will influence a letter and though in hunsford every moment upon me to &quot;
+  9-gram: &quot; when she saw the lady was a project gutenberg tm trademark as good as may we had called economy was able to advantage of it is probably superior to me when the persuasion you are gratefully accepted the danger of a proper civilities bingley were standing and beg leave his kindness mr darcy thought only a very proud but this work of a letter was a little of his return mr darcy who seems he was on the hermitage elizabeth entered the regulars and his sisters to consider poetry as any place that my dressing gown before and miss bingley &quot;
+  9-gram: &quot; john with some prettier girls walked about it was distressed but at all that bingley with lizzy said they never yet for a little compassion to prove had ever the more contracted into the bride as they had most improbable event of the greatest satisfaction of all but without ceremony was rather a lively tone which she might expect such confusion said fitzwilliam without knowing that it may lead me to elizabeth when in company for i never to all others were going to make the honour of that he was not altered what is improved and mrs bennet scarcely &quot;
+  9-gram: &quot; never seen miss bingley standing on her situation remained therefore soon as before she affectionately taking you again the other warranties of not expect jane constantly so i am not help giving her ease with mutual desire of i had been was alone after an earnest i cannot fix on the point out as much grown girl but as soon satisfied and praise on meeting both sat with whom he i speak with no such behaviour equally ill opinion in elizabeth was forced to stay at rosings in without seeming really believe a companion added she began scolding her through &quot;
+  9-gram: &quot; i had such a wish to visit them with him accidentally in which shortly have been considered it is desired effect of their acquaintance still increasing and conciliatory manners and i know not afraid her heart you mean as to the motion of lydia what i must feel something of superior execution he was as well as he should stand by undervaluing their favourable than hurrying instantly understood that led by his dependence when they were to whom he dines here this for incivility though it will be as the united to write very respectable pleasures and elizabeth could call &quot;
+  9-gram: &quot; how shall be so soon as warmly but no connections their share of general habits that his gig and when their former my affection to eight o clock in which brought only to set off and pride he had resolved to attribute to be aware that i shall though she did mr bennet have a part i cannot last how sincerely i must require and was attentive to do not her anxious circumspection of her how could have been designed for him my aunt promised letter i believe me so imprudence forgotten there are not receiving so mildly to have &quot;
 </pre>
 </div>
 </div>
