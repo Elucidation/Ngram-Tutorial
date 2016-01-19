@@ -3,13 +3,25 @@
 
 # # IPython Notebook - N-gram Tutorial
 # 
-# *By Sam Ansari - Aug 13, 2015*
+# I've always wondered how chat bots like [Alice](http://alice.pandorabots.com/) work. Now, they are obviously much more complex than this tutorial will delve into, but we can touch on some of the core principles. One of them is this idea of understanding the relationships between words in sentences. How can we get a machine to understand these relationships?
 # 
-# First I'll see how far I can get with N-grams without outside resources
+# Turns out there's the right way, and then there's the easy way. The right way involves delving deep into [semantic networks](https://en.wikipedia.org/wiki/Semantic_network) and ontologies, something I'd touched upon in my climate modelling days, but never mind that; We're doing **The Easy Way**.
 # 
-# We have a text file for [Pride and Prejudice from Project Gutenberg](https://www.gutenberg.org/ebooks/1342) stored as `pg1342.txt` in the same folder as our notebook. Let's load the text to a string since it's only 701KB, which will fit in memory nowadays. 
+# ### The Easy Way
 # 
-#     *Note* : If we wanted to be more memory efficient we should parse the text file and store per word, etc.
+# Conversely, the easy way to learn the relationships is by throwing lots of data *en masse* at a machine, and letting it build up a model of the relationships (*this sounds suspiciously like Machine Learning*). 
+# 
+# An even simpler form of that is to track the number of words that are in sequence with one another, and keeping track of the frequency at which this occurs. We're actually starting to describe something that uses [N-grams](https://en.wikipedia.org/wiki/N-gram). An N-gram is a contiguous (*order matters*) sequence of items, which in this case is the words in text.
+# 
+# What we want to do is build up a dictionary of N-grams, which are pairs, triplets or more (*the N*) of words that pop up in the training data, with the value being the number of times they showed up. After we have this dictionary, as a naive example we could actually predict sentences by just randomly choosing words within this dictionary and doing a weighted random sample of the connected words that are part of n-grams within the keys.
+# 
+# Lets see how far we can get with N-grams without outside resources.
+# 
+# ---
+# 
+# We have a text file for [Pride and Prejudice from Project Gutenberg](https://www.gutenberg.org/ebooks/1342) stored as `pg1342.txt` in the same folder as our notebook, but also available online directly. Let's load the text to a string since it's only 701KB, which will fit in memory nowadays. 
+# 
+#     *Note* : If we wanted to be more memory efficient we should parse the text file on a line or character by character basis, storing as needed, etc.
 
 # In[1]:
 
@@ -237,7 +249,7 @@ print "\""
 # ## Tri-grams and more
 # Okay, let's create a Ngram generator that can let us make ngrams of arbitrary sizes
 
-# In[ ]:
+# In[14]:
 
 def generateNgram(n=1):
     gram = dict()
@@ -264,7 +276,7 @@ print trigram[:20]
 
 # Cool! Okay, let's see a selection of sentences for N-grams with N = 2 to 10 and a few starting words!
 
-# In[ ]:
+# In[15]:
 
 def getNGramSentenceRandom(gram, word, n = 50):
     for i in xrange(n):
@@ -292,7 +304,7 @@ for n in xrange(2,10):
 
 # You can clearly see the sentences getting better and better with larger n-grams, this correlates to the ngram having more foresight into the sentence structure.
 
-# In[ ]:
+# In[16]:
 
 # Generate 10gram list
 print
@@ -303,7 +315,7 @@ print "Done"
 
 # Let's play with the 10gram and see what sort of sentence comes out.
 
-# In[ ]:
+# In[17]:
 
 # Try out a bunch of sentences
 for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
@@ -318,7 +330,7 @@ for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
 # 
 # To be continue...
 
-# In[ ]:
+# In[18]:
 
 # Generate 10gram list
 n = 50
@@ -328,16 +340,11 @@ gram30 = generateNgram(n)
 print "Done"
 
 
-# In[ ]:
+# In[19]:
 
 # Try out a bunch of sentences
 for word in ['and', 'he', 'she', 'when', 'john', 'never', 'i', 'how']:
     print "  %d-gram: \"" % n,
     getNGramSentenceRandom(ngram, word, 20)
     print "\""
-
-
-# In[ ]:
-
-
 
